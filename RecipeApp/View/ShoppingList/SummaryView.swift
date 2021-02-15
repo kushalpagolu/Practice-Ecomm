@@ -15,12 +15,22 @@ struct SummaryView: View {
     @State private var isPresented = false
     @Environment(\.presentationMode) var presentationMode
     
+    @State private var comment : String = ""
     
     @available(iOS 14.0, *)
     var body: some View {
         NavigationView {
             if #available(iOS 14.0, *) {
                 List{
+                    
+                    // example of how UUID() is used as Order no.
+                    // it'll be different everytime when this view is opened
+                    Section(header: Text("Order No:")){
+                    
+                        Text("\(UUID())")
+                        .font(.caption)
+                    }
+                    
                     Section(header: Text("Your Order Summary")){
                        // TextField("Product Selected", text: $product.title)
                        // TextField("Issues Selected")
@@ -32,24 +42,25 @@ struct SummaryView: View {
                             Text("Product : \(item.title)")
                         }
                         
-                        
-                        
-                        
                     }
                     
-                    /**                    Section(header: Text("COMMENTS")) {
-                        Text("Product")
+                    Section(header: Text("COMMENTS")) {
+                        TextField("Type Your Comment Here", text: $comment)
                     }
+                    
+                    
                     HStack {
                      //   TextField("Additional Comments")
                         Button(action: {
                         }) {
-                            Image(systemName: "plus.circle.fill")
-                                .accessibilityLabel(Text("Add Additional Comments"))
+                    
+                            Text("Proceed")
+                            //Image(systemName: "plus.circle.fill")
+                              //  .accessibilityLabel(Text("Add Additional Comments"))
                         }
                         //.disabled(newAttendee.isEmpty)
                     }
-                     */
+                     
 
                 }
                 .listStyle(InsetGroupedListStyle())
