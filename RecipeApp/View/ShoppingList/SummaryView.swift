@@ -10,7 +10,7 @@ import SwiftUI
 
 @available(iOS 14.0, *)
 struct SummaryView: View {
-    @State var product: Product
+   // @State var product: Product? = nil
     @EnvironmentObject var shoppingListViewModel: ShoppingListViewModel
     @State private var isPresented = false
     @Environment(\.presentationMode) var presentationMode
@@ -25,8 +25,19 @@ struct SummaryView: View {
                        // TextField("Product Selected", text: $product.title)
                        // TextField("Issues Selected")
                        // TextField("Recording Selected")
+                        
+                        // loop the items in shoppingListViewModel
+                        ForEach(shoppingListViewModel.shoppingList) { item in
+                        
+                            Text("Product : \(item.title)")
+                        }
+                        
+                        
+                        
+                        
                     }
-                    Section(header: Text("COMMENTS")) {
+                    
+                    /**                    Section(header: Text("COMMENTS")) {
                         Text("Product")
                     }
                     HStack {
@@ -38,6 +49,8 @@ struct SummaryView: View {
                         }
                         //.disabled(newAttendee.isEmpty)
                     }
+                     */
+
                 }
                 .listStyle(InsetGroupedListStyle())
                 .navigationBarItems(trailing: Button("Cancel") {
@@ -55,7 +68,7 @@ struct SummaryView: View {
 struct SummaryView_Previews: PreviewProvider {
     @available(iOS 14.0, *)
     static var previews: some View {
-        SummaryView(product: Product(title: "Pizza", items: [ProductItem(name: "Desk", done: true), ProductItem(name: "Chair", done: false)]))
+        SummaryView()//product: Product(title: "Pizza", items: [ProductItem(name: "Desk", done: true), ProductItem(name: "Chair", done: false)]))
             .environmentObject(ShoppingListViewModel())
             .previewLayout(.sizeThatFits)
     }

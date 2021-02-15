@@ -31,7 +31,7 @@ struct ShoppingListView: View {
                         .font(.title)
                         .foregroundColor(.blue)
                         .fullScreenCover(isPresented: $isPresented) {
-                            //SummaryView()
+                            SummaryView()
                         }
                     } else {
                         // Fallback on earlier versions
