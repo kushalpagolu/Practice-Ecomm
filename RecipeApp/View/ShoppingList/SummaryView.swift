@@ -17,17 +17,19 @@ struct SummaryView: View {
     
     @State private var comment : String = ""
     
+    // example of how UUID() is used as Order no.
+    // it'll be different everytime when this view is opened
+    @State private var orderNo : String = UUID().uuidString
+    
     @available(iOS 14.0, *)
     var body: some View {
         NavigationView {
             if #available(iOS 14.0, *) {
                 List{
                     
-                    // example of how UUID() is used as Order no.
-                    // it'll be different everytime when this view is opened
                     Section(header: Text("Order No:")){
                     
-                        Text("\(UUID())")
+                        Text("\(orderNo)")
                         .font(.caption)
                     }
                     
